@@ -55,10 +55,20 @@ class MainActivity : AppCompatActivity() {
         FSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    val doubleValue = progress / scaleFactor
+                    var doubleValue = progress / scaleFactor
                     // Format the double value to a string with two decimal places
+                    if (doubleValue < 32) {
+                        doubleValue = 32.0
+                        // Calculate what the SeekBar progress should be to represent 32 Fahrenheit
+                        // Assuming your scaleFactor and formula correctly map progress to Fahrenheit,
+                        // adjust this calculation to correctly reflect the progress for 32 Fahrenheit.
+                        val progressFor32F = (32 * scaleFactor).toInt()
+                        FSeekBar.progress = progressFor32F
+                    } else {
+                        // If not below 32, just use the calculated progress
+                        FSeekBar.progress = progress
+                    }
                     val transformedValue = max( (progress - 3200)/(1.8), 0.0)
-
 
 
                     val scaleValue = transformedValue / scaleFactor
