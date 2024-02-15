@@ -7,6 +7,15 @@ import android.widget.TextView
 import android.widget.SeekBar
 import kotlin.math.max
 
+//Reference
+//https://chat.openai.com/share/ea729446-37a2-4f3a-a15e-db547cd056d4
+//https://chat.openai.com/share/6c0d3ebe-087b-4604-aafe-b8eb7537cb08
+//https://chat.openai.com/share/76c59a4a-e677-4001-8fe4-6eaca7452643
+//https://chat.openai.com/share/d78f8654-3deb-4be3-9776-b2c6b5115728
+//https://chat.openai.com/share/b60a3be7-324a-4b99-81ea-56837126b571
+//https://chat.openai.com/share/9d7d1113-093b-44c6-9613-6d2c86754d9a
+//https://chat.openai.com/share/1a959b78-cd0f-4884-9d28-f6dce24196c7
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         Fvalue = findViewById(R.id.Fvalue)
         FSeekBar = findViewById(R.id.FSeekBar)
         CSeekBar = findViewById(R.id.CSeekBar)
+        var interseting_message: TextView = findViewById(R.id.Message)
 
         val scaleFactor = 100.0
 
@@ -44,6 +54,12 @@ class MainActivity : AppCompatActivity() {
                     Cvalue.text = "Celsius: $doubleValue"
                     FSeekBar.progress = transformedValue.toInt()
                     Fvalue.text = "Fahrenheit: $formattedValue"
+
+                    if (doubleValue < 20.0){
+                        interseting_message.setText("I hope it were Warmer")
+                    }else{
+                        interseting_message.setText("I hope it were Colder")
+                    }
                 }
             }
 
@@ -77,6 +93,12 @@ class MainActivity : AppCompatActivity() {
                     Cvalue.text = "Celsius: $formattedValue"
                     CSeekBar.progress = transformedValue.toInt()
                     Fvalue.text = "Fahrenheit: $doubleValue"
+
+                    if (doubleValue < 20.0){
+                        interseting_message.setText("I hope it were Warmer")
+                    }else{
+                        interseting_message.setText("I hope it were Colder")
+                    }
                 }
             }
 
